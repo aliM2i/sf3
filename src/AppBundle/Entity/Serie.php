@@ -20,7 +20,16 @@ class Serie
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
-
+        /**
+     *@ORM\OneToMany(targetEntity="Saison",mappedBy="serie")
+     */
+    private $saisons;
+     
+       /**
+     *@ORM\ManyToOne(targetEntity="Pays",inversedBy="series")
+     *@ORM\JoinColumn(name="pays_id")
+     */
+    private $pays;
     /**
      * @var string
      *
@@ -124,5 +133,69 @@ class Serie
     {
         return $this->nbreSaison;
     }
-}
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->saisons = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
+    /**
+     * Add saison
+     *
+     * @param \AppBundle\Entity\Saison $saison
+     *
+     * @return Serie
+     */
+    public function addSaison(\AppBundle\Entity\Saison $saison)
+    {
+        $this->saisons[] = $saison;
+
+        return $this;
+    }
+
+    /**
+     * Remove saison
+     *
+     * @param \AppBundle\Entity\Saison $saison
+     */
+    public function removeSaison(\AppBundle\Entity\Saison $saison)
+    {
+        $this->saisons->removeElement($saison);
+    }
+
+    /**
+     * Get saisons
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getSaisons()
+    {
+        return $this->saisons;
+    }
+
+    /**
+     * Set pays
+     *
+     * @param \AppBundle\Entity\Pays $pays
+     *
+     * @return Serie
+     */
+    public function setPays(\AppBundle\Entity\Pays $pays = null)
+    {
+        $this->pays = $pays;
+
+        return $this;
+    }
+
+    /**
+     * Get pays
+     *
+     * @return \AppBundle\Entity\Pays
+     */
+    public function getPays()
+    {
+        return $this->pays;
+    }
+}

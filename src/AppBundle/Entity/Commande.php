@@ -125,4 +125,3 @@ class Commande
         return $this->prixTotal;
     }
 }
-

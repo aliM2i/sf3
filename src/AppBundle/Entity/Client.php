@@ -170,4 +170,28 @@ class Client
      *
      * @return Client
      */
-}   
+
+    /**
+     * Set dateHeureCreation
+     *
+     * @param \DateTime $dateHeureCreation
+     *
+     * @return Client
+     */
+    public function setDateHeureCreation($dateHeureCreation)
+    {
+        $this->dateHeureCreation = $dateHeureCreation;
+
+        return $this;
+    }
+
+    /**
+     * Get dateHeureCreation
+     *
+     * @return \DateTime
+     */
+    public function getDateHeureCreation()
+    {
+        return $this->dateHeureCreation;
+    }
+}

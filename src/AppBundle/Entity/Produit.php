@@ -156,4 +156,3 @@ class Produit
         return $this->stock;
     }
 }
-

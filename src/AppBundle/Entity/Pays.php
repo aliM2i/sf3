@@ -5,12 +5,12 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * genre
+ * Pays
  *
- * @ORM\Table(name="genre")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\genreRepository")
+ * @ORM\Table(name="pays")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\PaysRepository")
  */
-class genre
+class Pays
 {
     /**
      * @var int
@@ -27,12 +27,17 @@ class genre
      * @ORM\Column(name="nom", type="string", length=255)
      */
     private $nom;
-   
-      /**
-     *@ORM\OneToMany(targetEntity="Film",mappedBy="genre")
+         /**
+     *@ORM\OneToMany(targetEntity="Serie",mappedBy="pays")
+     
+     */
+    private $series;
+
+     /**
+     *@ORM\OneToMany(targetEntity="Film",mappedBy="pays")
+     
      */
     private $films;
-  
     /**
      * Get id
      *
@@ -48,7 +53,7 @@ class genre
      *
      * @param string $nom
      *
-     * @return genre
+     * @return Pays
      */
     public function setNom($nom)
     {
@@ -79,7 +84,7 @@ class genre
      *
      * @param \AppBundle\Entity\Film $film
      *
-     * @return genre
+     * @return Pays
      */
     public function addFilm(\AppBundle\Entity\Film $film)
     {
@@ -106,5 +111,39 @@ class genre
     public function getFilms()
     {
         return $this->films;
+    }
+
+    /**
+     * Add series
+     *
+     * @param \AppBundle\Entity\Serie $series
+     *
+     * @return Pays
+     */
+    public function addSeries(\AppBundle\Entity\Serie $series)
+    {
+        $this->series[] = $series;
+
+        return $this;
+    }
+
+    /**
+     * Remove series
+     *
+     * @param \AppBundle\Entity\Serie $series
+     */
+    public function removeSeries(\AppBundle\Entity\Serie $series)
+    {
+        $this->series->removeElement($series);
+    }
+
+    /**
+     * Get series
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getSeries()
+    {
+        return $this->series;
     }
 }

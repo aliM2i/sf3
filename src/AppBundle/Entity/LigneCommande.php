@@ -93,5 +93,28 @@ class LigneCommande
     {
         return $this->quantit�;
     }
-}
 
+    /**
+     * Set quantite
+     *
+     * @param integer $quantite
+     *
+     * @return LigneCommande
+     */
+    public function setQuantite($quantite)
+    {
+        $this->quantite = $quantite;
+
+        return $this;
+    }
+
+    /**
+     * Get quantite
+     *
+     * @return integer
+     */
+    public function getQuantite()
+    {
+        return $this->quantite;
+    }
+}
